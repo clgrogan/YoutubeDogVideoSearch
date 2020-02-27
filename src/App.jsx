@@ -13,13 +13,7 @@ const App = () => {
         <nav>
           <ul>
             <li>
-              <Link to="/">Go Home</Link>
-            </li>
-            <li>
-              <Link to="/1">Page 1</Link>
-            </li>
-            <li>
-              <Link to="/2">Page 2</Link>
+              <Link to="/">Home Page</Link>
             </li>
           </ul>
         </nav>

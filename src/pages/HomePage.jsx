@@ -1,8 +1,8 @@
 import React from 'react'
-import HelloWorld from '../components/HelloWorld'
+import SearchBar from '../components/SearchBar'
 
 const HomePage = () => {
-  return <HelloWorld />
+  return <SearchBar />
 }
 
 export default HomePage
