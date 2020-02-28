@@ -9,4 +9,46 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+  background-color: #fafbfc;
+  color: #586069;
+}
+
+header {
+  width: 100;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  /* background-clip: padding-box; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.05); */
+  -webkit-backdrop-filter: blur(15px);
+}
+
+a {
+  text-decoration: none;
+  color: #586069;
+  padding: 1rem;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.minimizedText {
+  color: rgba(0, 0, 0, 0);
+  font-size: 0.1rem;
 }

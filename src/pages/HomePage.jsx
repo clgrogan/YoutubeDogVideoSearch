@@ -8,6 +8,26 @@ const HomePage = () => {
       <p>This will be the body of the home page.</p>
       <p>This will be the body of the home page.</p>
       <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
     </>
   )
 }

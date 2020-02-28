@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 const HeaderBar = () => {
   return (
     <header>
-      <nav>
-        <ul>
+      <nav className="navbar">
+        <ul className="navbar-ul">
           <li>
             <Link to="/">
               <i class="fas fa-dog"></i> Dog Video Finder
