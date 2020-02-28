@@ -8,16 +8,16 @@ const HeaderBar = () => {
         <ul className="navbar-ul">
           <li>
             <Link to="/">
-              <i class="fas fa-dog"></i> Dog Video Finder
+              <i className="fas fa-dog"></i> Dog Video Finder
               <span className="minimizedText"> Home/Reset</span>
             </Link>
           </li>
           <li>
             <input></input>
-            <i class="fas fa-search"></i>
+            <i className="fas fa-search"></i>
           </li>
           <li>
-            Powered by <i class="fab fa-youtube"></i>{' '}
+            Powered by <i className="fab fa-youtube"></i>{' '}
           </li>
         </ul>
       </nav>
