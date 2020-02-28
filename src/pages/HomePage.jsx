@@ -1,8 +1,15 @@
 import React from 'react'
-import SearchBar from '../components/SearchBar'
 
 const HomePage = () => {
-  return <SearchBar />
+  return (
+    <>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+      <p>This will be the body of the home page.</p>
+    </>
+  )
 }
 
 export default HomePage
