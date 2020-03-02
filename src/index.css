@@ -51,3 +51,8 @@ a {
   color: rgba(0, 0, 0, 0);
   font-size: 0.1rem;
 }
+
+.videoSummaryContainer {
+  display: flex;
+  justify-content: space-between;
+}
