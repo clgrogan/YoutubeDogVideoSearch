@@ -6,15 +6,31 @@ const HomePage = () => {
   // useState variables
   const [videos, setVideos] = useState([])
   const [baseApiUrl, setBaseApiUrl] = useState(
-    'https://www.googleapis.com/youtube/v3/search?key=AIzaSyCjPgL5JrQhnagPxwPPrAj7PeI35oB9Mg0&part=snippet&type=video&maxResults=10&q=dog'
+    'https://www.googleapis.com/youtube/v3/search?key=AIzaSyDoZryDEVVnQqoq705cqMjaH8pNsgLR8_k&part=snippet&type=video&maxResults=10&q=dog'
   )
 
   // Functions
   const getVideoDataFromApi = async () => {
-    const resp = await axios.get(baseApiUrl)
-    if (resp.status === 200) {
-      setVideos(resp.data.items)
-      console.log(resp.data.items)
+    try {
+      const resp = await axios.get(baseApiUrl)
+      if (resp.status === 200) {
+        setVideos(resp.data.items)
+        console.log(resp.data.items)
+      }
+    } catch (error) {
+      if (error.response) {
+        // api server responded with status code != 2xx
+        console.log(error.response)
+      } else if (error.request) {
+        // no response received after request submitted
+        console.log(error.request)
+      } else {
+        // An error occurred setting up api request.
+        // The request was not submitted to the api server.
+        console.log(error.request)
+      }
+      // Log the error
+      console.log(error)
     }
   }
   // useEffects
