@@ -5,7 +5,8 @@ const VideoPage = props => {
   const [youtubeUrl, setYoutubeUrl] = useState(
     'https://www.youtube.com/embed/' + props.match.params.videoId
   )
-  console.log(props)
+  console.log(props.match.params)
+  console.log(props.location.state)
 
   return (
     <>
@@ -23,13 +24,9 @@ const VideoPage = props => {
             </section>
           </section>
           <section className="videoTitleAndDescriptionSection">
-            <h2 className="videoTitle">
-              Baby Dogs - Cute and Funny Dog Videos Compilations #25 | Aww
-              Animals
-              {/* {props.video.snippet.title} */}
-            </h2>
+            <h2 className="videoTitle">{props.location.state.title}</h2>
             <h1 className="videoChannel">
-              SomeChannelNameHere
+              {props.location.state.channelTitle}
               <span className="subduedText"> - channel</span>
               {/* {props.video.snippet.description} */}
             </h1>

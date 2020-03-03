@@ -1,5 +1,5 @@
 :root {
-  font: 16px / 1 sans-serif;
+  font: 18px / 1 sans-serif;
 }
 
 html {
@@ -74,10 +74,6 @@ a {
   border-width: 1px;
   border-color: #ddd; */
 }
-
-/* .videoThumbnailContainer {
-  width: 30%;
-} */
 
 .videoThumbnail {
   width: 100%;
