@@ -15,8 +15,9 @@ const VideoPage = props => {
           <p>{youtubeUrl}</p>
           <iframe
             src={youtubeUrl}
-            frameborder="0"
+            frameBorder="0"
             className="playVideoFrame"
+            title="Video"
           ></iframe>
         </section>
       </main>
