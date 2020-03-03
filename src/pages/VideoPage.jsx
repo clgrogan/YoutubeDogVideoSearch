@@ -27,8 +27,10 @@ const VideoPage = props => {
             <h2 className="videoTitle">{props.location.state.title}</h2>
             <h1 className="videoChannel">
               {props.location.state.channelTitle}
-              <span className="subduedText"> - channel</span>
-              {/* {props.video.snippet.description} */}
+              <span className="subduedText">
+                {' '}
+                - <i className="fab fa-youtube"></i> channel
+              </span>
             </h1>
           </section>
         </section>

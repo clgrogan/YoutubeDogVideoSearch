@@ -2,18 +2,24 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const VideoSummaryComponent = props => {
-  console.log(props)
-  console.log(props.video.id)
-  console.log(props.video.snippet.thumbnails.medium)
+  // Create a video object to store & access preferred props.
+  const video = {
+    videoId: props.video.id.videoId,
+    title: props.video.snippet.title,
+    description: props.video.snippet.description,
+    channelTitle: props.video.snippet.channelTitle,
+    mediumThumbnailUrl: props.video.snippet.thumbnails.medium.url,
+  }
   return (
     <>
       <section className="videoSummaryContainer">
         <Link
           to={{
-            pathname: '/video/' + props.video.id.videoId,
+            pathname: '/video/' + video.videoId,
             state: {
-              title: props.video.snippet.title,
-              channelTitle: props.video.snippet.channelTitle,
+              title: video.title,
+              description: video.description,
+              channelTitle: video.channelTitle,
             },
           }}
         >
@@ -21,18 +27,13 @@ const VideoSummaryComponent = props => {
             <div className="videoThumbNailContainer">
               <img
                 className="videoThumbnail"
-                src={props.video.snippet.thumbnails.medium.url}
-                alt={
-                  'Thumbnail image for video titled ' +
-                  props.video.snippet.title
-                }
+                src={video.mediumThumbnailUrl}
+                alt={'Thumbnail image for video titled ' + video.title}
               />
             </div>
             <div>
-              <p className="summaryVideoTitle">{props.video.snippet.title}</p>
-              <p className="summaryVideoDescription">
-                {props.video.snippet.description}
-              </p>
+              <p className="summaryVideoTitle">{video.title}</p>
+              <p className="summaryVideoDescription">{video.description}</p>
             </div>
           </section>
         </Link>

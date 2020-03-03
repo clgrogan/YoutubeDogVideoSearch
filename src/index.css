@@ -30,6 +30,10 @@ a {
   padding: 0;
 }
 
+.fa-youtube {
+  color: #c4302be0;
+}
+
 .navbar {
   width: 100%;
   display: flex;
