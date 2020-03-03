@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 
 const VideoPage = props => {
   const [youtubeUrl, setYoutubeUrl] = useState(
     'https://www.youtube.com/embed/' + props.match.params.videoId
   )
-  console.log(props.match.params)
-  console.log(props.location.state)
-
   return (
     <>
       <main className="videoPageMain">
@@ -18,7 +14,7 @@ const VideoPage = props => {
                 src={youtubeUrl}
                 frameBorder="0"
                 className="playVideoFrame"
-                title="Dog Video"
+                title={props.location.state.title}
                 allowFullScreen
               ></iframe>
             </section>
