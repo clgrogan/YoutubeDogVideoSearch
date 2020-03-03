@@ -13,8 +13,24 @@ const HeaderBar = () => {
             </Link>
           </li>
           <li>
-            <input></input>
-            <i className="fas fa-search"></i>
+            <form
+              className="searchForm"
+              onSubmit={console.log('submitted, need to add function call')}
+            >
+              <section className="formInputSection">
+                <input
+                  type="text"
+                  name="searchQuery"
+                  id="searchQuery"
+                  // value={employee.firstName}
+                  // onChange={handleInputOnChange}
+                  // required
+                />
+              </section>
+              <button className="searchButton">
+                <i className="fas fa-search"></i>
+              </button>
+            </form>
           </li>
           <li>
             Powered by <i className="fab fa-youtube"></i>{' '}

@@ -56,6 +56,10 @@ a {
   font-size: 0.1rem;
 }
 
+.searchForm {
+  display: flex;
+}
+
 .subduedText {
   color: #545;
   font-weight: normal;
