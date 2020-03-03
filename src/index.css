@@ -52,7 +52,86 @@ a {
   font-size: 0.1rem;
 }
 
-.videoSummaryContainer {
+.subduedText {
+  color: #545;
+  font-weight: normal;
+}
+
+.cardColor {
+  background-color: rgba(245, 222, 179, 0.2);
+}
+
+.videoSummaryCard {
   display: flex;
   justify-content: space-between;
+  flex: 1 2;
+}
+
+.videoSummaryContainer {
+  padding: 0.7rem;
+  /* border-radius: 9px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd; */
+}
+
+/* .videoThumbnailContainer {
+  width: 30%;
+} */
+
+.videoThumbnail {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  padding: 0;
+
+  border-radius: 9px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.videoPageSection {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 1rem;
+  width: 95%;
+}
+
+.videoTitleAndDescriptionSection {
+  margin: 0.25rem;
+}
+
+.videoTitle {
+  font-size: 1.3rem;
+}
+
+.videoContainer {
+  padding: 1rem;
+  border-radius: 9px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+/* Responsive iFrame */
+.iFrameContainer {
+  width: 100%;
+  overflow: hidden;
+  /*padding-top calculated from aspect ratio 16:9 */
+  padding-top: 56.25%;
+  position: relative;
+
+  border-radius: 9px;
+  border-style: solid;
+  border-width: 0;
+}
+
+.iFrameContainer iframe {
+  border: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
