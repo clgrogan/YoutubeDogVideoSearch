@@ -6,33 +6,24 @@ const HeaderBar = () => {
     <header>
       <nav className="navbar">
         <ul className="navbar-ul">
-          <li>
+          <li className="navbar-li-left">
             <Link to="/">
               <i className="fas fa-dog"></i> Dog Video Finder
               <span className="minimizedText"> Home/Reset</span>
             </Link>
-          </li>
-          <li>
             <form
               className="searchForm"
               onSubmit={console.log('submitted, need to add function call')}
             >
               <section className="formInputSection">
-                <input
-                  type="text"
-                  name="searchQuery"
-                  id="searchQuery"
-                  // value={employee.firstName}
-                  // onChange={handleInputOnChange}
-                  // required
-                />
+                <input type="text" name="searchQuery" id="searchQuery" />
               </section>
               <button className="searchButton">
                 <i className="fas fa-search"></i>
               </button>
             </form>
           </li>
-          <li>
+          <li className="powered-by-li">
             Powered by <i className="fab fa-youtube"></i>{' '}
           </li>
         </ul>

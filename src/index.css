@@ -1,5 +1,5 @@
 :root {
-  font: 18px / 1 sans-serif;
+  font: 16px / 1 Tahoma, Geneva, sans-serif;
 }
 
 html {
@@ -51,6 +51,10 @@ a {
   padding: 0;
 }
 
+.navbar-li-left {
+  display: flex;
+}
+
 .minimizedText {
   color: rgba(0, 0, 0, 0);
   font-size: 0.1rem;
@@ -76,6 +80,7 @@ a {
 }
 
 .videoSummaryContainer {
+  min-width: 150px;
   padding: 0.7rem;
   /* border-radius: 9px;
   border-style: solid;
@@ -138,4 +143,15 @@ a {
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .powered-by-li {
+    display: none;
+  }
+}
+
+/* Wide Screen */
+@media (min-width: 500px) {
 }
