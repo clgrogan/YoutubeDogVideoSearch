@@ -2,22 +2,30 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import VideoSummaryComponent from '../components/VideoSummaryComponent'
 
-const HomePage = () => {
+const HomePage = props => {
   // useState variables
   const [videos, setVideos] = useState([])
-  const garbageIn = 'AIzqaSyATqVUJwa9Gk36GpFS5sMlD8aqytSLyjAUqhM'
-  const garbageOut = '4gh4Yy'[4]
   const [baseApiUrl, setBaseApiUrl] = useState(
     'https://www.googleapis.com/youtube/v3/search?key=' +
-    garbageIn.replace(/q/gi, '').replace(garbageOut, 'A') + //intentionally convoluted
+      'AIzaSyAGRN3RkBW4AyE58HfYpTqmh2H3hwuDLOk' +
       '&part=snippet&type=video&maxResults=10&q=dog'
   )
 
   // Functions
   const getVideoDataFromApi = async () => {
     console.log(baseApiUrl)
+    let apiUrl = baseApiUrl
+    if (props.location.state) {
+      apiUrl = appendSearchValue(
+        baseApiUrl,
+        props.location.state.redirectSearchQuery
+      )
+      // props.location.state.redirectSearchQuery = ''
+    }
+
+    console.log('apiUrl: ', apiUrl)
     try {
-      const resp = await axios.get(baseApiUrl)
+      const resp = await axios.get(apiUrl)
       if (resp.status === 200) {
         setVideos(resp.data.items)
         console.log(resp.data.items)
@@ -38,6 +46,17 @@ const HomePage = () => {
       // Log the error
       console.log(error)
     }
+  }
+
+  const appendSearchValue = (initialApiUrl, searchQuery) => {
+    let finalApiUrl = ''
+    if (searchQuery && searchQuery > ' ') {
+      finalApiUrl =
+        initialApiUrl + '+' + props.location.state.redirectSearchQuery
+    } else {
+      finalApiUrl = initialApiUrl
+    }
+    return finalApiUrl
   }
 
   // useEffects

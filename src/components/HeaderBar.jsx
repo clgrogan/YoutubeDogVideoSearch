@@ -1,31 +1,28 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 
-const HeaderBar = () => {
+const HeaderBar = props => {
   const [queryValue, setQueryValue] = useState('')
-  // Handle Input onChange
-  // const handleInputOnChange = e => {
-  //   console.log('executed handleInputOnChange')
-  //   e.persist()
-  //   setQueryValue(prev => ({
-  //     ...prev,
-  //     [e.target.name]: e.target.value,
-  //   }))
-  //   console.log(queryValue)
-  // }
-
-  // handle search button click
+  const [executeRedirect, setExecuteRedirect] = useState(false)
   const onClickSearchButton = () => {
-    console.log('Initial query value: ', queryValue)
-    console.log('trim query here: ', queryValue.trim())
-    setQueryValue(queryValue.trim())
-    // let strQueryValue = queryValue.searchQuery
-    // let strQueryValue = queryValue.trim()
-    // alert('xxx', strQueryValue, 'xxx')
-    // console.log('log trimmed query value: ', strQueryValue)
-    // setQueryValue(strQueryValue.trim())
-    // console.log('Trimmed query value: ', queryValue)
+    // handle search button click
+
+    // trim leading and trailing whitespace, update state
+    promiseSetQueryValue(queryValue.trim())
+
+    // console.log(queryValue)
+    // if (queryValue > ' ') {
+    //   setExecuteRedirect(true)
+    // }
   }
+
+  const promiseSetQueryValue = async newValue => {
+    new Promise(resolve => setQueryValue(newValue, resolve))
+    if (newValue > ' ') {
+      setExecuteRedirect(true)
+    }
+  }
+
   return (
     <header>
       <nav className="navbar">
@@ -35,7 +32,6 @@ const HeaderBar = () => {
               <i className="fas fa-dog"></i> Dog Video Finder
               <span className="minimizedText"> Home/Reset</span>
             </Link>
-            {/* <form className="searchForm" onSubmit={handleSubmit}> */}
             <section className="formInputSection">
               <input
                 type="text"
@@ -46,14 +42,19 @@ const HeaderBar = () => {
                 onChange={event => setQueryValue(event.target.value)}
               />
             </section>
-            <button
-              className="searchButton"
-              // onClick={() => props.calcKeyClicked(props.calcKey)}
-              onClick={onClickSearchButton}
-            >
+            <button className="searchButton" onClick={onClickSearchButton}>
               <i className="fas fa-search"></i>
             </button>
-            {/* </form> */}
+            {executeRedirect === true && (
+              <Redirect
+                to={{
+                  pathname: '/',
+                  state: {
+                    redirectSearchQuery: queryValue,
+                  },
+                }}
+              />
+            )}
           </li>
           <li className="powered-by-li">
             Powered by <i className="fab fa-youtube"></i>{' '}
