@@ -12,6 +12,7 @@ const App = () => {
       <HeaderBar />
       <Switch>
         <Route exact path="/" component={HomePage}></Route>
+        {/* <Route exact path="/:searchString" component={HomePage}></Route> */}
         <Route exact path="/video/:videoId" component={VideoPage}></Route>
         <Route path="*" component={NotFound}></Route>
       </Switch>
