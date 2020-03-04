@@ -1,5 +1,5 @@
 :root {
-  font: 16px / 1 Tahoma, Geneva, sans-serif;
+  font: 16px / 1 Tahoma, sans-serif;
 }
 
 html {
@@ -73,11 +73,15 @@ a {
   background-color: rgba(245, 222, 179, 0.2);
 }
 
-.videoSummaryCard {
+.searchResultsSection {
+  width: 100%;
+}
+
+/* .videoSummaryCard {
   display: flex;
   justify-content: space-between;
   flex: 1 2;
-}
+} */
 
 .videoSummaryContainer {
   min-width: 150px;
@@ -98,6 +102,15 @@ a {
   border-style: solid;
   border-width: 1px;
   border-color: #ddd;
+}
+
+.summaryVideoTitle {
+  margin: 0.5rem 0.2rem 0.5rem 0.2rem;
+}
+
+.summaryVideoDescription {
+  margin: 0 0.2rem 0.5rem 0.2rem;
+  font-size: 0.8rem;
 }
 
 .videoPageSection {
