@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 const VideoPage = props => {
-  const [youtubeUrl, setYoutubeUrl] = useState(
+  const [youtubeUrl] = useState(
     'https://www.youtube.com/embed/' + props.match.params.videoId
   )
   return (

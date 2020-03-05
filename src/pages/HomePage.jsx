@@ -5,7 +5,7 @@ import VideoSummaryComponent from '../components/VideoSummaryComponent'
 const HomePage = props => {
   // useState variables
   const [videos, setVideos] = useState([])
-  const [baseApiUrl, setBaseApiUrl] = useState(
+  const [baseApiUrl] = useState(
     'https://www.googleapis.com/youtube/v3/search?key=' +
       // 'AIzaSyAGRN3RkBW4AyE58HfYpTqmh2H3hwuDLOk' +
       'AIzaSyATVUJwa9Gk36GpFS5sMlD8aytSLyjAUhM' +
