@@ -4,7 +4,7 @@ Single Page Application (SPA) that allows users to search the Dogs category of Y
 
 [X] Create a home component that lists videos.
 
-[ ] Allow search within the Dog category on both the home component and video component (example: q = dog + query).
+[X] Allow search within the Dog category on both the home component and video component (example: q = dog + query).
 
 [X] Show description/title/thumbnail for every video listed on the home page after a search is entered.
 

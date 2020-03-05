@@ -3,24 +3,22 @@ import { Link, Redirect } from 'react-router-dom'
 
 const HeaderBar = props => {
   const [queryValue, setQueryValue] = useState('')
+  const [queryString, setQueryString] = useState('')
   const [executeRedirect, setExecuteRedirect] = useState(false)
+
   const onClickSearchButton = () => {
     // handle search button click
 
     // trim leading and trailing whitespace, update state
-    promiseSetQueryValue(queryValue.trim())
-
-    // console.log(queryValue)
-    // if (queryValue > ' ') {
-    //   setExecuteRedirect(true)
-    // }
+    promiseSetQueryString(queryValue.trim())
   }
 
-  const promiseSetQueryValue = async newValue => {
-    new Promise(resolve => setQueryValue(newValue, resolve))
+  const promiseSetQueryString = async newValue => {
+    new Promise(resolve => setQueryString(newValue, resolve))
     if (newValue > ' ') {
       setExecuteRedirect(true)
     }
+    setQueryValue('')
   }
 
   return (
@@ -29,7 +27,7 @@ const HeaderBar = props => {
         <ul className="navbar-ul">
           <li className="navbar-li-left">
             <Link to="/">
-              <i className="fas fa-dog"></i> Dog Video Finder
+              <i className="fas fa-dog"></i> Dog Video Fetcher
               <span className="minimizedText"> Home/Reset</span>
             </Link>
             <section className="formInputSection">
@@ -37,7 +35,6 @@ const HeaderBar = props => {
                 type="text"
                 name="searchQuery"
                 id="searchQuery"
-                defaultValue={queryValue}
                 value={queryValue}
                 onChange={event => setQueryValue(event.target.value)}
               />
@@ -48,9 +45,9 @@ const HeaderBar = props => {
             {executeRedirect === true && (
               <Redirect
                 to={{
-                  pathname: '/',
+                  pathname: '/Search',
                   state: {
-                    redirectSearchQuery: queryValue,
+                    redirectSearchQuery: queryString,
                   },
                 }}
               />

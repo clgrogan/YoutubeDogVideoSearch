@@ -7,9 +7,11 @@ const HomePage = props => {
   const [videos, setVideos] = useState([])
   const [baseApiUrl, setBaseApiUrl] = useState(
     'https://www.googleapis.com/youtube/v3/search?key=' +
-      'AIzaSyAGRN3RkBW4AyE58HfYpTqmh2H3hwuDLOk' +
-      '&part=snippet&type=video&maxResults=10&q=dog'
+      // 'AIzaSyAGRN3RkBW4AyE58HfYpTqmh2H3hwuDLOk' +
+      'AIzaSyATVUJwa9Gk36GpFS5sMlD8aytSLyjAUhM' +
+      '&part=snippet&type=video&maxResults=5&q=dog'
   )
+  const [searchString, setSearchString] = useState('')
 
   // Functions
   const getVideoDataFromApi = async () => {
@@ -20,6 +22,7 @@ const HomePage = props => {
         baseApiUrl,
         props.location.state.redirectSearchQuery
       )
+      setSearchString(props.location.state.redirectSearchQuery)
       // props.location.state.redirectSearchQuery = ''
     }
 
@@ -59,6 +62,10 @@ const HomePage = props => {
     return finalApiUrl
   }
 
+  const displaySearchQuery = queryValue => {
+    return queryValue > '' ? ' & ' + queryValue : ''
+  }
+
   // useEffects
   useEffect(() => {
     // executes the Api call on page render
@@ -68,6 +75,9 @@ const HomePage = props => {
   return (
     <>
       <main>
+        <h2 className="resultsFor">
+          Search results for 'dog'{displaySearchQuery(searchString)}:
+        </h2>
         <section className="searchResultsSection">
           {videos.map(video => {
             return (
