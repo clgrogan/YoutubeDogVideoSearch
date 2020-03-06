@@ -8,7 +8,8 @@ const HomePage = props => {
   const [baseApiUrl] = useState(
     'https://www.googleapis.com/youtube/v3/search?key=' +
       // 'AIzaSyAGRN3RkBW4AyE58HfYpTqmh2H3hwuDLOk' +
-      'AIzaSyATVUJwa9Gk36GpFS5sMlD8aytSLyjAUhM' +
+      // 'AIzaSyATVUJwa9Gk36GpFS5sMlD8aytSLyjAUhM' +
+      'AIzaSyDdHUSQYlKJqfJ4AGlEUnzNomp6cGFDWV0' +
       '&part=snippet&type=video&maxResults=5&q=dog'
   )
   const [searchString, setSearchString] = useState('')
@@ -91,6 +92,11 @@ const HomePage = props => {
     ) {
       return
     }
+    console.log(
+      window.innerHeight + document.documentElement.scrollTop,
+      '- innerHeight + scrollTop value'
+    )
+    console.log(document.documentElement.offsetHeight, '- offsetHeight')
     setIsFetching(true)
   }
 
@@ -113,9 +119,9 @@ const HomePage = props => {
   return (
     <>
       <main>
-        <h2 className="resultsFor">
+        {/* <h1 className="resultsFor">
           Search results for 'dog'{displaySearchQuery(searchString)}:
-        </h2>
+        </h1> */}
         <section className="searchResultsSection">
           {!videos && <h2>Loading...</h2>}
           {videos.map(video => {
