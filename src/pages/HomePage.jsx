@@ -12,11 +12,12 @@ const HomePage = props => {
       '&part=snippet&type=video&maxResults=5&q=dog'
   )
   const [searchString, setSearchString] = useState('')
+  const [nextPageToken, setNextPageToken] = useState('')
+  const [isFetching, setIsFetching] = useState(false)
 
   // Functions
-  const getVideoDataFromApi = async () => {
-    console.log(baseApiUrl)
-    let apiUrl = baseApiUrl
+  const getVideoDataFromApi = async nextPageString => {
+    let apiUrl = baseApiUrl + nextPageString
     if (props.location.state) {
       apiUrl = appendSearchValue(
         baseApiUrl,
@@ -30,8 +31,25 @@ const HomePage = props => {
     try {
       const resp = await axios.get(apiUrl)
       if (resp.status === 200) {
-        setVideos(resp.data.items)
+        // if this is the initial api call, set the Video array to the returned data items
+        // else, append the returned data items to the previous items in the array.
+        if (nextPageString === '') {
+          setVideos(resp.data.items)
+        } else {
+          // spread 'em and merge 'em
+          setVideos([...videos, ...resp.data.items])
+
+          setNextPageToken('')
+          setIsFetching(false)
+        }
+        if (resp.data.nextPageToken) {
+          console.log('nextPageToken: ', resp.data.nextPageToken)
+          setNextPageToken(resp.data.nextPageToken)
+        } else {
+          setNextPageToken('')
+        }
         console.log(resp.data.items)
+        console.log(resp)
       }
     } catch (error) {
       if (error.response) {
@@ -54,8 +72,7 @@ const HomePage = props => {
   const appendSearchValue = (initialApiUrl, searchQuery) => {
     let finalApiUrl = ''
     if (searchQuery && searchQuery > ' ') {
-      finalApiUrl =
-        initialApiUrl + '+' + props.location.state.redirectSearchQuery
+      finalApiUrl = initialApiUrl + '+' + searchQuery
     } else {
       finalApiUrl = initialApiUrl
     }
@@ -66,10 +83,31 @@ const HomePage = props => {
     return queryValue > '' ? ' & ' + queryValue : ''
   }
 
+  const isScrolling = () => {
+    // Set flag for when data is being retrieved.
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    ) {
+      return
+    }
+    setIsFetching(true)
+  }
+
   // useEffects
+
+  useEffect(() => {
+    if (isFetching) {
+      console.log('The dog is fetching!')
+      getVideoDataFromApi('&pageToken=' + nextPageToken)
+    }
+  }, [isFetching])
+
   useEffect(() => {
     // executes the Api call on page render
-    getVideoDataFromApi()
+    getVideoDataFromApi('')
+    window.addEventListener('scroll', isScrolling)
+    return () => window.removeEventListener('scroll', isScrolling)
   }, [])
 
   return (
@@ -79,6 +117,7 @@ const HomePage = props => {
           Search results for 'dog'{displaySearchQuery(searchString)}:
         </h2>
         <section className="searchResultsSection">
+          {!videos && <h2>Loading...</h2>}
           {videos.map(video => {
             return (
               <VideoSummaryComponent key={video.id.videoId} video={video} />
