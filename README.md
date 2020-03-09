@@ -16,3 +16,8 @@ https://youtube-dog-video-search-cgrogan.netlify.com/
 [X] The video component must displays the video itself, the title, and the name of the channel that posted it.
 
 [X] Pagination was implemented via the api's pageToken functionality.
+
+Future To do...
+[ ] Fix quirks with the search, may pull the search bar into the Home Page.
+[ ] Implement infinite scrolling.
+[ ] Secure API key
