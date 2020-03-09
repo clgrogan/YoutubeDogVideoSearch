@@ -21,3 +21,4 @@ Future To do...
 [ ] Fix quirks with the search, may pull the search bar into the Home Page.
 [ ] Implement infinite scrolling.
 [ ] Secure API key
+[ ] Improve UX, feedback on search results/errors.
