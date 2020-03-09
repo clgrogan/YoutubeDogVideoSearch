@@ -7,9 +7,7 @@ const HomePagination = props => {
   const [videos, setVideos] = useState([])
   const [baseApiUrl] = useState(
     'https://www.googleapis.com/youtube/v3/search?key=' +
-      // 'AIzaSyAGRN3RkBW4AyE58HfYpTqmh2H3hwuDLOk' +
-      // 'AIzaSyATVUJwa9Gk36GpFS5sMlD8aytSLyjAUhM' +
-      'AIzaSyDdHUSQYlKJqfJ4AGlEUnzNomp6cGFDWV0' +
+      'AIzaSyDuzEJUKkFyRae8Dbc11VHOJCfYqT7L-IE' +
       '&part=snippet&type=video&maxResults=12&q=dog'
   )
   const [searchString, setSearchString] = useState('')
@@ -68,7 +66,6 @@ const HomePagination = props => {
   }
   const onClickNextPage = () => {
     // handle button click()
-    console.log('next page clicked with token: ', nextPageToken)
     getVideoDataFromApi('&pageToken=' + nextPageToken)
   }
   const onClickPrevPage = () => {
@@ -120,7 +117,7 @@ const HomePagination = props => {
           </button>
         </section>
         <section className="searchResultsSection">
-          {!videos && <h2>Loading...</h2>}
+          {videos.length === 0 && <p>Fetching videos...</p>}
           {videos.map(video => {
             return (
               <VideoSummaryComponent key={video.id.videoId} video={video} />

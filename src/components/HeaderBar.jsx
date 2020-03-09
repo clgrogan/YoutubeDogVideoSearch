@@ -34,7 +34,7 @@ const HeaderBar = () => {
               <input
                 className="searchInput"
                 type="text"
-                placeholder="hypoallergenic"
+                placeholder="...enter search text here"
                 name="searchQuery"
                 id="searchQuery"
                 value={queryValue}
