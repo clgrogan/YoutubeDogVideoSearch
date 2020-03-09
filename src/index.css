@@ -18,9 +18,9 @@ header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0rem 0.5rem;
   background-color: rgba(245, 222, 179, 0.8);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.15); */
   -webkit-backdrop-filter: blur(15px);
 }
 
@@ -60,8 +60,19 @@ a {
   font-size: 0.1rem;
 }
 
-.searchForm {
-  display: flex;
+.searchInput {
+  height: 80%;
+  font-size: 0.7rem;
+  margin: 0 0.2rem 0 0;
+}
+
+.searchButton {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #8b4513;
+  font-size: 1rem;
 }
 
 .subduedText {
@@ -79,12 +90,40 @@ a {
   flex-direction: column;
   align-items: center;
 }
-
-/* .videoSummaryCard {
+.messageNextPrevPage {
+  /* position: -webkit-sticky;
+  position: sticky; */
   display: flex;
-  justify-content: space-between;
-  flex: 1 2;
-} */
+  align-items: center;
+  width: 100%;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(245, 222, 179, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  justify-content: space-around;
+}
+.resultsFor {
+  color: #8b4513;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.next-page-button,
+.previous-page-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #8b4513;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled] {
+  color: #8b451351;
+}
 
 .videoSummaryContainer {
   min-width: 100px;
@@ -169,8 +208,8 @@ a {
   }
 }
 
-/* Wide Screen */
-@media (min-width: 500px) {
+/* Mediocre Screen */
+@media (min-width: 500px) and (max-width: 1200px) {
   .searchResultsSection {
     flex-direction: row;
     flex-wrap: wrap;
@@ -179,5 +218,22 @@ a {
   .videoSummaryContainer {
     min-width: 100px;
     max-width: 225px;
+  }
+}
+
+/* Wide Screen */
+
+@media (min-width: 1200px) {
+  :root {
+    font: 24px / 1 Tahoma, sans-serif;
+  }
+  .searchResultsSection {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .videoSummaryContainer {
+    min-width: 200px;
+    max-width: 300px;
   }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import VideoSummaryComponent from '../components/VideoSummaryComponent'
 
-const HomePage = props => {
+const HomePagination = props => {
   // useState variables
   const [videos, setVideos] = useState([])
   const [baseApiUrl] = useState(
@@ -10,11 +10,11 @@ const HomePage = props => {
       // 'AIzaSyAGRN3RkBW4AyE58HfYpTqmh2H3hwuDLOk' +
       // 'AIzaSyATVUJwa9Gk36GpFS5sMlD8aytSLyjAUhM' +
       'AIzaSyDdHUSQYlKJqfJ4AGlEUnzNomp6cGFDWV0' +
-      '&part=snippet&type=video&maxResults=5&q=dog'
+      '&part=snippet&type=video&maxResults=12&q=dog'
   )
   const [searchString, setSearchString] = useState('')
   const [nextPageToken, setNextPageToken] = useState('')
-  const [isFetching, setIsFetching] = useState(false)
+  const [prevPageToken, setPrevPageToken] = useState('')
 
   // Functions
   const getVideoDataFromApi = async nextPageString => {
@@ -28,29 +28,26 @@ const HomePage = props => {
       // props.location.state.redirectSearchQuery = ''
     }
 
-    console.log('apiUrl: ', apiUrl)
+    // console.log('apiUrl: ', apiUrl)
+    // return ///breaking thing
     try {
       const resp = await axios.get(apiUrl)
       if (resp.status === 200) {
-        // if this is the initial api call, set the Video array to the returned data items
-        // else, append the returned data items to the previous items in the array.
-        if (nextPageString === '') {
-          setVideos(resp.data.items)
-        } else {
-          // spread 'em and merge 'em
-          setVideos([...videos, ...resp.data.items])
-
-          setNextPageToken('')
-          setIsFetching(false)
-        }
+        setVideos(resp.data.items)
         if (resp.data.nextPageToken) {
-          console.log('nextPageToken: ', resp.data.nextPageToken)
+          // console.log('nextPageToken: ', resp.data.nextPageToken)
           setNextPageToken(resp.data.nextPageToken)
         } else {
           setNextPageToken('')
         }
-        console.log(resp.data.items)
-        console.log(resp)
+        if (resp.data.prevPageToken) {
+          // console.log('prevPageToken: ', resp.data.prevPageToken)
+          setPrevPageToken(resp.data.prevPageToken)
+        } else {
+          setPrevPageToken('')
+        }
+        // console.log(resp.data.items)
+        // console.log(resp)
       }
     } catch (error) {
       if (error.response) {
@@ -69,6 +66,15 @@ const HomePage = props => {
       console.log(error)
     }
   }
+  const onClickNextPage = () => {
+    // handle button click()
+    console.log('next page clicked with token: ', nextPageToken)
+    getVideoDataFromApi('&pageToken=' + nextPageToken)
+  }
+  const onClickPrevPage = () => {
+    // handle button click
+    getVideoDataFromApi('&pageToken=' + prevPageToken)
+  }
 
   const appendSearchValue = (initialApiUrl, searchQuery) => {
     let finalApiUrl = ''
@@ -83,45 +89,36 @@ const HomePage = props => {
   const displaySearchQuery = queryValue => {
     return queryValue > '' ? ' & ' + queryValue : ''
   }
-
-  const isScrolling = () => {
-    // Set flag for when data is being retrieved.
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-      document.documentElement.offsetHeight
-    ) {
-      return
-    }
-    console.log(
-      window.innerHeight + document.documentElement.scrollTop,
-      '- innerHeight + scrollTop value'
-    )
-    console.log(document.documentElement.offsetHeight, '- offsetHeight')
-    setIsFetching(true)
-  }
-
   // useEffects
-
-  useEffect(() => {
-    if (isFetching) {
-      console.log('The dog is fetching!')
-      getVideoDataFromApi('&pageToken=' + nextPageToken)
-    }
-  }, [isFetching])
 
   useEffect(() => {
     // executes the Api call on page render
     getVideoDataFromApi('')
-    window.addEventListener('scroll', isScrolling)
-    return () => window.removeEventListener('scroll', isScrolling)
   }, [])
 
   return (
     <>
       <main>
-        {/* <h1 className="resultsFor">
-          Search results for 'dog'{displaySearchQuery(searchString)}:
-        </h1> */}
+        <section className="messageNextPrevPage">
+          <button
+            className="previous-page-button"
+            disabled={!prevPageToken}
+            onClick={onClickPrevPage}
+          >
+            <i className="fas fa-angle-double-left"></i>
+          </button>
+          <p className="resultsFor">
+            Displaying Results for the category 'dog'
+            {displaySearchQuery(searchString)}:
+          </p>
+          <button
+            className="next-page-button"
+            disabled={!nextPageToken}
+            onClick={onClickNextPage}
+          >
+            <i className="fas fa-angle-double-right"></i>
+          </button>
+        </section>
         <section className="searchResultsSection">
           {!videos && <h2>Loading...</h2>}
           {videos.map(video => {
@@ -135,4 +132,4 @@ const HomePage = props => {
   )
 }
 
-export default HomePage
+export default HomePagination

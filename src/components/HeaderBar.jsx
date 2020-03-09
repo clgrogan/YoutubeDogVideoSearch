@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 
-const HeaderBar = props => {
+const HeaderBar = () => {
   const [queryValue, setQueryValue] = useState('')
   const [queryString, setQueryString] = useState('')
   const [executeRedirect, setExecuteRedirect] = useState(false)
@@ -30,9 +30,11 @@ const HeaderBar = props => {
               <i className="fas fa-dog"></i> Dog Video Fetcher
               <span className="minimizedText"> Home/Reset</span>
             </Link>
-            <section className="formInputSection">
+            <section className="inputSection">
               <input
+                className="searchInput"
                 type="text"
+                placeholder="hypoallergenic"
                 name="searchQuery"
                 id="searchQuery"
                 value={queryValue}
